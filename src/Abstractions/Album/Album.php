@@ -35,23 +35,23 @@ class Album
     public string $uri;
 
     /** @var Copyright[] */
-    #[ObjectArrayType(name: 'copyrights', class: Copyright::class)]
+    #[ObjectArrayType(name: 'copyrights', class: Copyright::class, nullable: true)]
     public array $copyrights;
 
-    public ExternalIds $externalIds;
+    public ?ExternalIds $externalIds;
 
     /** @var string[] */
     #[PrimitiveArrayType(name: 'genres', type: PrimitiveType::STRING, nullable: true)]
     public array $genres = [];
 
-    public string $label;
-    public int $popularity;
+    public ?string $label;
+    public ?int $popularity;
 
     /** @var Artist[] */
     #[ObjectArrayType(name: 'artists', class: Artist::class)]
     public array $artists;
 
-    public Tracks $tracks;
+    public ?Tracks $tracks;
 
     public function getUserUrl(): string
     {
