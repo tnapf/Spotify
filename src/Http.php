@@ -76,7 +76,7 @@ class Http
 
         $json = json_decode($response->getBody()->getContents(), true);
 
-        $json = $callback ? $callback($json) : $json;
+        $json = $callback !== null ? $callback($json) : $json;
 
         foreach ($json as $item) {
             $mapped[] = $this->mapper->map($class, $item);
