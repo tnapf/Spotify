@@ -11,7 +11,6 @@ use Tnapf\Spotify\Abstractions\Artist\ExternalUrls;
 use Tnapf\Spotify\Abstractions\Common\Copyright;
 use Tnapf\Spotify\Abstractions\Common\ExternalIds;
 use Tnapf\Spotify\Abstractions\Common\Image;
-use Tnapf\Spotify\Abstractions\Tracks\SimplifiedTrack;
 
 /**
  * @see https://developer.spotify.com/documentation/web-api/reference/get-an-album
