@@ -54,7 +54,7 @@ class Albums extends RestBase
         return $this->http->mapRequest(
             Tracks::class,
             Method::GET,
-            Endpoint::bind(Endpoint::ALBUM_TRACKS, compact('id'), compact('limit', 'offset'), market: $market),
+            Endpoint::bind(Endpoint::ALBUMS_ID_TRACKS, compact('id'), compact('limit', 'offset'), market: $market),
             headers: $this->http->mergeHeaders()
         );
     }
