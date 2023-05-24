@@ -31,7 +31,7 @@ class Track
     public ExternalUrls $externalUrls;
     public string $href;
     public string $id;
-    public bool $isPlayable;
+    public ?bool $isPlayable;
     public ?LinkedFrom $linkedFrom;
     public ?Restrictions $restrictions;
     public string $name;
