@@ -5,11 +5,14 @@ namespace Tnapf\Spotify\Rest;
 class Endpoint
 {
     public const BASE = 'https://api.spotify.com/v1';
-    public const ALBUMS = '/albums'; // GET
-    public const ALBUMS_ID = '/albums/:id:'; // GET
-    public const ALBUM_TRACKS = '/albums/:id:/tracks'; // GET
-    public const ARTIST = '/artists';
-    public const GET_ARTIST = '/artists/:id:';
+    public const ALBUMS = '/albums';
+    public const ALBUMS_ID = '/albums/:id:';
+    public const ALBUMS_ID_TRACKS = '/albums/:id:/tracks';
+    public const ARTISTS = '/artists';
+    public const ARTISTS_ID = '/artists/:id:';
+    public const ARTISTS_ID_ALBUMS = '/artists/:id:/albums';
+    public const ARTISTS_ID_TOP_TRACKS = '/artists/:id:/top-tracks';
+    public const ARTISTS_ID_RELATED_ARTISTS = '/artists/:id:/related-artists';
 
     public static function bind(string $endpoint, array $params = [], array $getParams = [], ?string $market = null): string
     {
