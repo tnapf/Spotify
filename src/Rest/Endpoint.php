@@ -13,6 +13,12 @@ class Endpoint
     public const ARTISTS_ID_ALBUMS = '/artists/:id:/albums';
     public const ARTISTS_ID_TOP_TRACKS = '/artists/:id:/top-tracks';
     public const ARTISTS_ID_RELATED_ARTISTS = '/artists/:id:/related-artists';
+    public const TRACKS = '/tracks';
+    public const TRACKS_ID = '/tracks/:id:';
+    public const ME_TRACKS = '/me/tracks';
+    public const TRACK_AUDIO_ANALYSIS = '/audio-analysis/:id:';
+    public const TRACK_AUDIO_FEATURES = '/audio-features';
+    public const TRACK_AUDIO_FEATURES_ID = '/audio-features/:id:';
 
     public static function bind(string $endpoint, array $params = [], array $getParams = [], ?string $market = null): string
     {
