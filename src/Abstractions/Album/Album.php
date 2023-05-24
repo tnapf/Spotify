@@ -11,6 +11,7 @@ use Tnapf\Spotify\Abstractions\Artist\ExternalUrls;
 use Tnapf\Spotify\Abstractions\Common\Copyright;
 use Tnapf\Spotify\Abstractions\Common\ExternalIds;
 use Tnapf\Spotify\Abstractions\Common\Image;
+use Tnapf\Spotify\Abstractions\Tracks\SimplifiedTrack;
 
 /**
  * @see https://developer.spotify.com/documentation/web-api/reference/get-an-album
@@ -24,9 +25,7 @@ class Album
     public string $href;
     public string $id;
 
-    /**
-     * @var Image[]
-     */
+    /** @var Image[] */
     #[ObjectArrayType(name: 'images', class: Image::class)]
     public array $images;
 
@@ -36,20 +35,27 @@ class Album
     public string $type;
     public string $uri;
 
-    /**
-     * @var Copyright[]
-     */
+    /** @var Copyright[] */
     #[ObjectArrayType(name: 'copyrights', class: Copyright::class)]
     public array $copyrights;
 
     public ExternalIds $externalIds;
 
+    /** @var string[] */
     #[PrimitiveArrayType(name: 'genres', type: PrimitiveType::STRING, nullable: true)]
     public array $genres = [];
 
     public string $label;
     public int $popularity;
 
+    /** @var Artist[] */
     #[ObjectArrayType(name: 'artists', class: Artist::class)]
     public array $artists;
+
+    public Tracks $tracks;
+
+    public function getUserUrl(): string
+    {
+        return "https://open.spotify.com/album/{$this->id}";
+    }
 }
