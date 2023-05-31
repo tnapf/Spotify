@@ -3,7 +3,6 @@
 namespace Tnapf\Spotify\Abstractions\Playlist;
 
 use Tnapf\JsonMapper\Attributes\ObjectArrayType;
-use Tnapf\Spotify\Abstractions\Track\SimplifiedTrack;
 
 class Tracks
 {
@@ -17,6 +16,4 @@ class Tracks
     /** @var Track[] */
     #[ObjectArrayType(name: 'items', class: Track::class)]
     public array $items;
-
-
 }

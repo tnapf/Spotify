@@ -31,6 +31,5 @@ class Playlists extends RestBase
             headers: $this->http->mergeHeaders()
         );
 
-
     }
 }

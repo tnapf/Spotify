@@ -22,6 +22,5 @@ class Playlist
 
     public bool $public;
     public string $snapshotId;
-
     public Tracks $tracks;
 }
