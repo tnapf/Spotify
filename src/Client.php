@@ -4,6 +4,7 @@ namespace Tnapf\Spotify;
 
 use Tnapf\Spotify\Rest\Albums;
 use Tnapf\Spotify\Rest\Artists;
+use Tnapf\Spotify\Rest\Playlists;
 use Tnapf\Spotify\Rest\Tracks;
 
 /**
@@ -11,6 +12,7 @@ use Tnapf\Spotify\Rest\Tracks;
  * @property-read Albums $albums
  * @property-read Tracks $tracks
  * @property-read Artists $artists
+ * @property-read Playlists $playlists
  */
 class Client
 {
@@ -32,6 +34,7 @@ class Client
             'albums' => Albums::class,
             'tracks' => Tracks::class,
             'artists' => Artists::class,
+            'playlists' => Playlists::class,
         ];
 
         if (!isset($rest[$name])) {

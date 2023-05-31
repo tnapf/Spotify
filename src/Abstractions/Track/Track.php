@@ -36,7 +36,7 @@ class Track
     public ?Restrictions $restrictions;
     public string $name;
     public int $popularity;
-    public string $previewUrl;
+    public ?string $previewUrl;
     public int $trackNumber;
     public string $type;
     public string $uri;

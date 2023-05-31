@@ -7,7 +7,9 @@ use HttpSoft\Message\ServerRequest;
 use HttpSoft\Message\Stream;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
+use ReflectionException;
 use Throwable;
+use Tnapf\JsonMapper\MapperException;
 use Tnapf\Spotify\Abstractions\Authorization\AccessToken;
 use Tnapf\Spotify\Abstractions\Errors\AuthenticationError;
 use Tnapf\Spotify\Abstractions\Errors\Error;
@@ -85,6 +87,11 @@ class Http
         return $mapped;
     }
 
+    /**
+     * @throws HttpException
+     * @throws ReflectionException
+     * @throws MapperException
+     */
     protected function throwIfNotOkay(ResponseInterface $response): void
     {
         if ($response->getStatusCode() === 200) {
