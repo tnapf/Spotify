@@ -2,9 +2,9 @@
 
 namespace Tnapf\Spotify\Rest;
 
-use Tnapf\Spotify\Abstractions\Tracks\AudioAnalysis\AudioAnalysis;
-use Tnapf\Spotify\Abstractions\Tracks\AudioFeatures;
-use Tnapf\Spotify\Abstractions\Tracks\Track;
+use Tnapf\Spotify\Abstractions\Track\AudioAnalysis\AudioAnalysis;
+use Tnapf\Spotify\Abstractions\Track\AudioFeatures;
+use Tnapf\Spotify\Abstractions\Track\Track;
 use Tnapf\Spotify\Enums\Method;
 
 class Tracks extends RestBase

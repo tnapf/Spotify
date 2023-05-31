@@ -1,6 +1,6 @@
 <?php
 
-namespace Tnapf\Spotify\Abstractions\Tracks;
+namespace Tnapf\Spotify\Abstractions\Track;
 
 use Tnapf\JsonMapper\Attributes\SnakeToCamelCase;
 

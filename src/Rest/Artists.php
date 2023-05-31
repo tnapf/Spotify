@@ -3,7 +3,7 @@
 namespace Tnapf\Spotify\Rest;
 
 use Tnapf\Spotify\Abstractions\Artist\Artist;
-use Tnapf\Spotify\Abstractions\Tracks\Track;
+use Tnapf\Spotify\Abstractions\Track\Track;
 use Tnapf\Spotify\Enums\Method;
 use Tnapf\Spotify\Abstractions\Artist\Albums;
 

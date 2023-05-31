@@ -3,7 +3,7 @@
 namespace Tnapf\Spotify\Abstractions\Album;
 
 use Tnapf\JsonMapper\Attributes\ObjectArrayType;
-use Tnapf\Spotify\Abstractions\Tracks\SimplifiedTrack;
+use Tnapf\Spotify\Abstractions\Track\SimplifiedTrack;
 
 class Tracks
 {

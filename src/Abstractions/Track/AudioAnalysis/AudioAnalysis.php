@@ -1,6 +1,6 @@
 <?php
 
-namespace Tnapf\Spotify\Abstractions\Tracks\AudioAnalysis;
+namespace Tnapf\Spotify\Abstractions\Track\AudioAnalysis;
 
 class AudioAnalysis
 {
