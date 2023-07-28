@@ -44,7 +44,7 @@ class Http
             'grant_type=client_credentials',
             [
                 'content-type' => 'application/x-www-form-urlencoded',
-                'authorization' => 'Basic '.base64_encode("{$this->id}:{$this->secret}"),
+                'authorization' => 'Basic ' . base64_encode("{$this->id}:{$this->secret}"),
             ]
         );
     }

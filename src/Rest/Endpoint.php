@@ -23,7 +23,7 @@ class Endpoint
 
     public static function bind(string $endpoint, array $params = [], array $getParams = [], ?string $market = null): string
     {
-        $endpoint = self::BASE.$endpoint;
+        $endpoint = self::BASE . $endpoint;
 
         foreach ($params as $key => $value) {
             $endpoint = str_replace(":{$key}:", $value, $endpoint);
@@ -34,7 +34,7 @@ class Endpoint
         }
 
         if (!empty($getParams)) {
-            $endpoint .= '?'.http_build_query($getParams, '', '&');
+            $endpoint .= '?' . http_build_query($getParams, '', '&');
         }
 
         return $endpoint;
