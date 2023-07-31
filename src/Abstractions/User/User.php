@@ -1,6 +1,6 @@
 <?php
 
-namespace Tnapf\Spotify\Abstractions\Users;
+namespace Tnapf\Spotify\Abstractions\User;
 
 use Tnapf\JsonMapper\Attributes\SnakeToCamelCase;
 use Tnapf\Spotify\Abstractions\Artist\ExternalUrls;

@@ -3,7 +3,7 @@
 namespace Tnapf\Spotify\Abstractions\Playlist;
 
 use Tnapf\JsonMapper\Attributes\SnakeToCamelCase;
-use Tnapf\Spotify\Abstractions\Users\User;
+use Tnapf\Spotify\Abstractions\User\User;
 use Tnapf\Spotify\Abstractions\Track\Track as TrackObject;
 
 #[SnakeToCamelCase]
