@@ -20,6 +20,9 @@ class Endpoint
     public const TRACK_AUDIO_FEATURES = '/audio-features';
     public const TRACK_AUDIO_FEATURES_ID = '/audio-features/:id:';
     public const PLAYLISTS_ID = '/playlists/:id:';
+    public const AUDIOBOOKS_ID = '/audiobooks/:id:';
+    public const AUDIOBOOKS_CHAPTERS = '/audiobooks/:id:/chapters';
+    public const AUDIOBOOKS = '/audiobooks';
 
     public static function bind(string $endpoint, array $params = [], array $getParams = [], ?string $market = null): string
     {
