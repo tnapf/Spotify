@@ -4,6 +4,7 @@ namespace Tnapf\Spotify;
 
 use Tnapf\Spotify\Rest\Albums;
 use Tnapf\Spotify\Rest\Artists;
+use Tnapf\Spotify\Rest\Audiobooks;
 use Tnapf\Spotify\Rest\Playlists;
 use Tnapf\Spotify\Rest\Tracks;
 
@@ -13,6 +14,7 @@ use Tnapf\Spotify\Rest\Tracks;
  * @property-read Tracks $tracks
  * @property-read Artists $artists
  * @property-read Playlists $playlists
+ * @property-read Audiobooks $audiobooks
  */
 class Client
 {
@@ -24,10 +26,8 @@ class Client
 
     public function __get(string $name): mixed
     {
-        $public = ['http'];
-
-        if (in_array($name, $public)) {
-            return $this->$name;
+        if ($name === 'http') {
+            return $this->http;
         }
 
         $rest = [
@@ -35,6 +35,7 @@ class Client
             'tracks' => Tracks::class,
             'artists' => Artists::class,
             'playlists' => Playlists::class,
+            'audiobooks' => Audiobooks::class,
         ];
 
         if (!isset($rest[$name])) {
