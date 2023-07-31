@@ -6,6 +6,7 @@ use Tnapf\JsonMapper\Attributes\ObjectArrayType;
 use Tnapf\JsonMapper\Attributes\SnakeToCamelCase;
 use Tnapf\Spotify\Abstractions\Artist\ExternalUrls;
 use Tnapf\Spotify\Abstractions\Common\Image;
+use Tnapf\Spotify\Abstractions\User\User;
 
 #[SnakeToCamelCase]
 class Playlist
@@ -20,7 +21,11 @@ class Playlist
     #[ObjectArrayType('images', Image::class)]
     public array $images;
 
+    public string $name;
+    public User $owner;
     public bool $public;
     public string $snapshotId;
     public Tracks $tracks;
+    public string $type;
+    public string $uri;
 }
