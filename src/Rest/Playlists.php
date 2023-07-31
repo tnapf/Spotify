@@ -27,9 +27,8 @@ class Playlists extends RestBase
         $this->http->request(
             Method::PUT,
             Endpoint::bind(Endpoint::PLAYLISTS_ID, compact('id')),
-            body: compact('name', 'public', 'collaborative', 'description'),
+            body: json_encode($body),
             headers: $this->http->mergeHeaders()
         );
-
     }
 }
