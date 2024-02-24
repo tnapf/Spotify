@@ -10,6 +10,7 @@ class AccessToken
     public string $accessToken;
     public string $tokenType;
     public int $expiresIn;
+    public ?string $refreshToken;
 
     public function isExpired(): bool
     {

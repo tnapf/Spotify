@@ -20,10 +20,18 @@ class Endpoint
     public const TRACK_AUDIO_FEATURES = '/audio-features';
     public const TRACK_AUDIO_FEATURES_ID = '/audio-features/:id:';
     public const PLAYLISTS_ID = '/playlists/:id:';
+    public const AUDIOBOOKS_ID = '/audiobooks/:id:';
+    public const AUDIOBOOKS_CHAPTERS = '/audiobooks/:id:/chapters';
+    public const AUDIOBOOKS = '/audiobooks';
+    public const USERS_ME = '/me';
+    public const USERS_ME_TOP_ARTISTS = '/me/top/artists';
+    public const USERS_ME_TOP_TRACKS = '/me/top/tracks';
+    public const USERS_ME_PLAYLISTS = '/me/playlists';
+    public const USERS_ME_PLAYBACK = '/me/player';
 
     public static function bind(string $endpoint, array $params = [], array $getParams = [], ?string $market = null): string
     {
-        $endpoint = self::BASE.$endpoint;
+        $endpoint = self::BASE . $endpoint;
 
         foreach ($params as $key => $value) {
             $endpoint = str_replace(":{$key}:", $value, $endpoint);
@@ -34,7 +42,7 @@ class Endpoint
         }
 
         if (!empty($getParams)) {
-            $endpoint .= '?'.http_build_query($getParams, '', '&');
+            $endpoint .= '?' . http_build_query($getParams, '', '&');
         }
 
         return $endpoint;

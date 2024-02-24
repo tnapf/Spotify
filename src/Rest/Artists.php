@@ -24,7 +24,7 @@ class Artists extends RestBase
     {
         $ids = implode(',', $ids);
 
-        return $this->http->arrayMapRequest(
+        return $this->http->mapArrayRequest(
             Artist::class,
             Method::GET,
             Endpoint::bind(Endpoint::ARTISTS, getParams: compact('ids')),
@@ -62,7 +62,7 @@ class Artists extends RestBase
     /** @return Track[] */
     public function getTopTracks(string $id, string $market = 'US'): array
     {
-        return $this->http->arrayMapRequest(
+        return $this->http->mapArrayRequest(
             Track::class,
             Method::GET,
             Endpoint::bind(Endpoint::ARTISTS_ID_TOP_TRACKS, compact('id'), market: $market),
@@ -74,7 +74,7 @@ class Artists extends RestBase
     /** @return Artist[] */
     public function getRelatedArtists(string $id): array
     {
-        return $this->http->arrayMapRequest(
+        return $this->http->mapArrayRequest(
             Artist::class,
             Method::GET,
             Endpoint::bind(Endpoint::ARTISTS_ID_RELATED_ARTISTS, compact('id')),

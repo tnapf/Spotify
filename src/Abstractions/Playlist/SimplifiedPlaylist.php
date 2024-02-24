@@ -9,12 +9,11 @@ use Tnapf\Spotify\Abstractions\Common\Image;
 use Tnapf\Spotify\Abstractions\User\User;
 
 #[SnakeToCamelCase]
-class Playlist
+class SimplifiedPlaylist
 {
     public bool $collaborative;
     public ?string $description;
     public ExternalUrls $externalUrls;
-    public ?Followers $followers;
     public string $href;
     public string $id;
 
@@ -25,7 +24,7 @@ class Playlist
     public User $owner;
     public bool $public;
     public string $snapshotId;
-    public Tracks $tracks;
+    public SimplifiedPlaylistTracks $tracks;
     public string $type;
     public string $uri;
 }

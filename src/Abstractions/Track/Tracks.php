@@ -1,6 +1,6 @@
 <?php
 
-namespace Tnapf\Spotify\Abstractions\Playlist;
+namespace Tnapf\Spotify\Abstractions\Track;
 
 use Tnapf\JsonMapper\Attributes\ObjectArrayType;
 use Tnapf\Spotify\Abstractions\Common\Pages;

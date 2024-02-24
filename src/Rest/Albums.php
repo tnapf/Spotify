@@ -29,7 +29,7 @@ class Albums extends RestBase
     {
         $ids = implode(',', $ids);
 
-        return $this->http->arrayMapRequest(
+        return $this->http->mapArrayRequest(
             Album::class,
             Method::GET,
             Endpoint::bind(Endpoint::ALBUMS, [], compact('ids'), market: $market),

@@ -5,9 +5,9 @@ namespace Tnapf\Spotify\Abstractions\Playlist;
 use Tnapf\JsonMapper\Attributes\ObjectArrayType;
 use Tnapf\Spotify\Abstractions\Common\Pages;
 
-class Tracks extends Pages
+class Playlists extends Pages
 {
-    /** @var Track[] */
-    #[ObjectArrayType(name: 'items', class: Track::class)]
+    /** @var Playlist[] */
+    #[ObjectArrayType(name: 'items', class: Playlist::class)]
     public array $items;
 }
