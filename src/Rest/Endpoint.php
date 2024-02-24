@@ -23,6 +23,11 @@ class Endpoint
     public const AUDIOBOOKS_ID = '/audiobooks/:id:';
     public const AUDIOBOOKS_CHAPTERS = '/audiobooks/:id:/chapters';
     public const AUDIOBOOKS = '/audiobooks';
+    public const USERS_ME = '/me';
+    public const USERS_ME_TOP_ARTISTS = '/me/top/artists';
+    public const USERS_ME_TOP_TRACKS = '/me/top/tracks';
+    public const USERS_ME_PLAYLISTS = '/me/playlists';
+    public const USERS_ME_PLAYBACK = '/me/player';
 
     public static function bind(string $endpoint, array $params = [], array $getParams = [], ?string $market = null): string
     {

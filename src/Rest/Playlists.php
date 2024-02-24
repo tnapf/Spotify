@@ -3,6 +3,7 @@
 namespace Tnapf\Spotify\Rest;
 
 use Tnapf\Spotify\Abstractions\Playlist\Playlist;
+use Tnapf\Spotify\Abstractions\Playlist\SimplifiedPlaylists;
 use Tnapf\Spotify\Enums\Method;
 
 class Playlists extends RestBase
@@ -13,6 +14,15 @@ class Playlists extends RestBase
             Playlist::class,
             Method::GET,
             Endpoint::bind(Endpoint::PLAYLISTS_ID, compact('id'), compact('fields', 'additionalTypes'), market: $market),
+            headers: $this->http->mergeHeaders()
+        );
+    }
+
+    public function getCurrentUserPlaylists(int $limit = 20, $offset = 0): SimplifiedPlaylists {
+        return $this->http->mapRequest(
+            SimplifiedPlaylists::class,
+            Method::GET,
+            Endpoint::bind(Endpoint::USERS_ME_PLAYLISTS, getParams: compact('limit', 'offset')),
             headers: $this->http->mergeHeaders()
         );
     }

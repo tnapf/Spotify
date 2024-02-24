@@ -11,11 +11,13 @@ use ReflectionException;
 use Throwable;
 use Tnapf\JsonMapper\MapperException;
 use Tnapf\Spotify\Abstractions\Authorization\AccessToken;
+use Tnapf\Spotify\Abstractions\Authorization\Scope;
 use Tnapf\Spotify\Abstractions\Errors\AuthenticationError;
 use Tnapf\Spotify\Abstractions\Errors\Error;
 use Tnapf\Spotify\Enums\Method;
 use Tnapf\Spotify\Exceptions\HttpException;
 use Tnapf\JsonMapper\MapperInterface;
+use ValueError;
 
 class Http
 {
@@ -32,7 +34,13 @@ class Http
         protected readonly string $id,
         protected readonly string $secret
     ) {
-        $this->token = $this->getAuthenticationToken();
+        $this->withAccessToken($this->getAuthenticationToken());
+    }
+
+    public function withAccessToken(AccessToken $token): self
+    {
+        $this->token = $token;
+        return $this;
     }
 
     public function getAuthenticationToken(): AccessToken
@@ -41,10 +49,65 @@ class Http
             AccessToken::class,
             Method::POST,
             'https://accounts.spotify.com/api/token',
-            'grant_type=client_credentials',
+            "grant_type=client_credentials&client_id={$this->id}&client_secret={$this->secret}",
             [
                 'content-type' => 'application/x-www-form-urlencoded',
                 'authorization' => 'Basic ' . base64_encode("{$this->id}:{$this->secret}"),
+            ]
+        );
+    }
+
+    public function requestUserAuthorization(string $redirectUri, array $scopes = []): string
+    {
+        foreach ($scopes as $scope) {
+            if (!$scope instanceof Scope) {
+                throw new ValueError('Scopes must be an instance of ' . Scope::class);
+            }
+        }
+
+        $scopes = array_map(static fn (Scope $scope) => $scope->value, $scopes);
+        $base = 'https://accounts.spotify.com/authorize';
+        $query = http_build_query([
+            'client_id' => $this->id,
+            'response_type' => 'code',
+            'redirect_uri' => $redirectUri,
+            'scope' => implode(' ', $scopes),
+        ]);
+
+        return "{$base}?{$query}";
+    }
+
+    public function requestUserAccessToken(string $code, string $redirectUri): AccessToken
+    {
+        return $this->mapRequest(
+            AccessToken::class,
+            Method::POST,
+            'https://accounts.spotify.com/api/token',
+            http_build_query([
+                'grant_type' => 'authorization_code',
+                'code' => $code,
+                'redirect_uri' => $redirectUri,
+            ]),
+            [
+                'authorization' => 'Basic ' . base64_encode("{$this->id}:{$this->secret}"),
+                'content-type' => 'application/x-www-form-urlencoded',
+            ]
+        );
+    }
+
+    public function requestRefreshedAccessToken(string $refreshToken): AccessToken
+    {
+        return $this->mapRequest(
+            AccessToken::class,
+            Method::POST,
+            'https://accounts.spotify.com/api/token',
+            http_build_query([
+                'grant_type' => 'refresh_token',
+                'refresh_token' => $refreshToken,
+            ]),
+            [
+                'authorization' => 'Basic ' . base64_encode("{$this->id}:{$this->secret}"),
+                'content-type' => 'application/x-www-form-urlencoded',
             ]
         );
     }
@@ -67,11 +130,15 @@ class Http
      * @template T
      *
      * @param class-string<T> $class
-     * @param Closure(array): array $callback You can modify the array before the loop to map it
+     * @param Method $method
+     * @param string $uri
+     * @param string|null $body
+     * @param array $headers
+     * @param Closure|null $callback You can modify the array before the loop to map it
      *
      * @return T[]
      */
-    public function arrayMapRequest(string $class, Method $method, string $uri, ?string $body = null, array $headers = [], ?Closure $callback = null): array
+    public function mapArrayRequest(string $class, Method $method, string $uri, ?string $body = null, array $headers = [], ?Closure $callback = null): array
     {
         $response = $this->request($method, $uri, $body, $headers);
         $mapped = [];
@@ -99,6 +166,10 @@ class Http
         }
 
         $json = json_decode($response->getBody()->getContents(), true);
+
+        if ($json === null) {
+            return;
+        }
 
         if (isset($json['error']['status'])) {
             $error = $this->mapper->map(Error::class, $json['error']);

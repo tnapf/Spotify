@@ -23,7 +23,7 @@ class Audiobooks extends RestBase
     {
         $ids = implode(',', $ids);
 
-        return $this->http->arrayMapRequest(
+        return $this->http->mapArrayRequest(
             Audiobook::class,
             Method::GET,
             Endpoint::bind(Endpoint::AUDIOBOOKS, getParams: compact('ids'), market: $market),

@@ -5,8 +5,10 @@ namespace Tnapf\Spotify;
 use Tnapf\Spotify\Rest\Albums;
 use Tnapf\Spotify\Rest\Artists;
 use Tnapf\Spotify\Rest\Audiobooks;
+use Tnapf\Spotify\Rest\Player;
 use Tnapf\Spotify\Rest\Playlists;
 use Tnapf\Spotify\Rest\Tracks;
+use Tnapf\Spotify\Rest\Users;
 
 /**
  * @property-read Http $http
@@ -15,6 +17,8 @@ use Tnapf\Spotify\Rest\Tracks;
  * @property-read Artists $artists
  * @property-read Playlists $playlists
  * @property-read Audiobooks $audiobooks
+ * @property-read Users $users
+ * @property-read Player $player
  */
 class Client
 {
@@ -36,6 +40,8 @@ class Client
             'artists' => Artists::class,
             'playlists' => Playlists::class,
             'audiobooks' => Audiobooks::class,
+            'users' => Users::class,
+            'player' => Player::class
         ];
 
         if (!isset($rest[$name])) {

@@ -24,7 +24,7 @@ class Tracks extends RestBase
     {
         $ids = implode(',', $ids);
 
-        return $this->http->arrayMapRequest(
+        return $this->http->mapArrayRequest(
             Track::class,
             Method::GET,
             Endpoint::bind(Endpoint::TRACKS, getParams: compact('ids'), market: $market),
@@ -48,7 +48,7 @@ class Tracks extends RestBase
     {
         $ids = implode(',', $ids);
 
-        return $this->http->arrayMapRequest(
+        return $this->http->mapArrayRequest(
             AudioFeatures::class,
             Method::GET,
             Endpoint::bind(Endpoint::TRACK_AUDIO_FEATURES, getParams: compact('ids')),
